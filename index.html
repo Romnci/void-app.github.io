@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOID FBI - Cyber Agent Application</title>
+    <meta property="og:title" content="VOID FBI Application Portal">
+    <meta property="og:description" content="Official application forum to join VOID FBI Cyber Division">
+    <meta name="theme-color" content="#6a00f4">
+    <style>
+        :root {
+            --void-blue: #0b0e23;
+            --void-accent: #6a00f4;
+            --void-light: #00f0ff;
+            --void-red: #ff0033;
+            --void-green: #00ff88;
+            --void-yellow: #ffcc00;
+        }
+        @font-face {
+            font-family: 'Orbitron';
+            src: url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+        }
+        @font-face {
+            font-family: 'Rajdhani';
+            src: url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        }
+        body {
+            font-family: 'Rajdhani', 'Orbitron', 'Segoe UI', sans-serif;
+            background-color: var(--void-blue);
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(106, 0, 244, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(11, 14, 35, 0.97);
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(106, 0, 244, 0.4);
+            border: 1px solid var(--void-accent);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--void-red), var(--void-accent), var(--void-light));
+            animation: borderGlow 3s infinite alternate;
+        }
+        @keyframes borderGlow {
+            0% { opacity: 0.3; background-position: 0% 50%; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; background-position: 100% 50%; }
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(106, 0, 244, 0.3);
+        }
+        .symbol {
+            font-size: 80px;
+            margin-bottom: 10px;
+            color: var(--void-light);
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
+            animation: pulse 3s infinite alternate;
+            filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.5));
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+            100% { transform: scale(1.05); text-shadow: 0 0 25px rgba(0, 240, 255, 0.9); }
+        }
+        h1 {
+            color: var(--void-light);
+            margin: 0;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, var(--void-light), var(--void-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .tagline {
+            color: #aaa;
+            font-style: italic;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--void-light);
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(106, 0, 244, 0.7);
+            color: white;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease-out;
+            font-family: 'Rajdhani', sans-serif;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--void-light);
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.2),
+                        0 0 20px rgba(0, 240, 255, 0.2),
+                        inset 0 0 10px rgba(0, 240, 255, 0.1);
+            background-color: rgba(0, 240, 255, 0.05);
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, var(--void-accent), #4d00b0);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(106, 0, 244, 0.3);
+        }
+        .submit-btn::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 45%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0) 55%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #7a1aff, #5a00cc);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(106, 0, 244, 0.5);
+        }
+        .submit-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 10px rgba(106, 0, 244, 0.5);
+        }
+        .status-box {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 8px;
+            background-color: rgba(0, 240, 255, 0.15);
+            border-left: 5px solid var(--void-light);
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .checkbox-group {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .checkbox-item {
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(106, 0, 244, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-item:hover {
+            background: rgba(106, 0, 244, 0.2);
+            border-color: var(--void-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 0, 244, 0.2);
+        }
+        .checkbox-item input {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--void-accent);
+        }
+        .checkbox-item label {
+            margin: 0;
+            font-weight: 500;
+            color: #ddd;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .privacy-note {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(106, 0, 244, 0.5);
+            padding-top: 20px;
+            line-height: 1.7;
+        }
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .hacker-terminal {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--void-accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            color: var(--void-green);
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .terminal-line {
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: type 0.1s steps(30, end);
+            line-height: 1.5;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+        }
+        @keyframes type {
+            from { width: 0; }
+        }
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .access-denied {
+            color: var(--void-red);
+            text-align: center;
+            margin: 30px 0;
+            display: none;
+            animation: shake 0.5s;
+            padding: 20px;
+            background: rgba(255, 0, 51, 0.1);
+            border-radius: 6px;
+            border-left: 4px solid var(--void-red);
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .hidden {
+            display: none;
+        }
+        .security-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 240, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--void-light);
+            border: 1px solid var(--void-accent);
+            display: flex;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        .security-badge::before {
+            content: "🔒";
+            margin-right: 6px;
+            font-size: 14px;
+        }
+        .required-field::after {
+            content: " *";
+            color: var(--void-red);
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            cursor: help;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid var(--void-accent);
+            font-size: 14px;
+            font-weight: normal;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .captcha-container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 25px 0;
+            border: 1px solid rgba(106, 0, 244, 0.5);
+            text-align: center;
+        }
+        .captcha-text {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 5px;
+            font-size: 24px;
+            background: linear-gradient(90deg, var(--void-light), var(--void-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 15px 0;
+            user-select: none;
+        }
+        .captcha-input {
+            width: 200px;
+            margin: 0 auto;
+            text-align: center;
+            letter-spacing: 3px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .captcha-error {
+            color: var(--void-red);
+            margin-top: 10px;
+            display: none;
+        }
+        .visitor-log {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--void-red);
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 12px;
+            color: var(--void-light);
+            max-width: 300px;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+        }
+        .visitor-log-title {
+            color: var(--void-red);
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .visitor-log-content {
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+        }
+        .visitor-log-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--void-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 101;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.5);
+            transition: all 0.3s;
+        }
+        .visitor-log-toggle:hover {
+            transform: scale(1.1);
+        }
+        .progress-bar {
+            height: 4px;
+            background: rgba(106, 0, 244, 0.3);
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--void-accent), var(--void-light));
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        .password-strength {
+            margin-top: 5px;
+            font-size: 13px;
+            display: none;
+        }
+        .strength-weak {
+            color: var(--void-red);
+        }
+        .strength-medium {
+            color: var(--void-yellow);
+        }
+        .strength-strong {
+            color: var(--void-green);
+        }
+        .visitor-count {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 240, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--void-light);
+            border: 1px solid var(--void-accent);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        .visitor-count::before {
+            content: "👤";
+            margin-right: 6px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .symbol {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles-js"></div>
+    
+    <div class="container">
+        <div class="security-badge">SECURE CONNECTION: AES-256</div>
+        <div class="visitor-count" id="visitorCount">Loading visitor data...</div>
+        
+        <div class="header">
+            <div class="symbol">🦅</div>
+            <h1>VOID FBI CYBER DIVISION</h1>
+            <div class="tagline">Top Secret Recruitment Portal</div>
+        </div>
+
+        <div class="hacker-terminal" id="terminal">
+            <div class="terminal-line">> Initializing secure connection...</div>
+            <div class="terminal-line">> Establishing encrypted channel...</div>
+            <div class="terminal-line">> Connection secured [AES-256]</div>
+            <div class="terminal-line">> Verifying security clearance...</div>
+            <div class="terminal-line">> Scanning device for threats...</div>
+            <div class="terminal-line">> Status: <span id="user-status">[verification in progress]</span></div>
+            <div class="terminal-line">> _<span class="blink">|</span></div>
+        </div>
+
+        <form id="applicationForm" style="display: none;">
+            <div class="form-group">
+                <label for="username" class="required-field">Your Discord/Instagram username</label>
+                <input type="text" id="username" name="username" required placeholder="e.g., cyberagent#1234">
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="required-field">Create a secure passphrase</label>
+                <input type="password" id="password" name="password" required placeholder="Minimum 12 characters">
+                <div class="progress-bar">
+                    <div class="progress" id="passwordStrengthBar"></div>
+                </div>
+                <div class="password-strength" id="passwordStrengthText"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="reason" class="required-field">Why do you want to join VOID FBI?</label>
+                <textarea id="reason" name="reason" required placeholder="Tell us your motivations and goals..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="experience" class="required-field">Do you have any cybersecurity experience?</label>
+                <textarea id="experience" name="experience" required placeholder="Describe any skills in hacking, programming, or security..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Select your skills (click to select)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pentesting" name="skills" value="Penetration Testing">
+                        <label for="pentesting">Ethical Hacking</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="forensics" name="skills" value="Digital Forensics">
+                        <label for="forensics">Digital Forensics</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="malware" name="skills" value="Malware Analysis">
+                        <label for="malware">Malware Analysis</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="osint" name="skills" value="OSINT">
+                        <label for="osint">OSINT Investigations</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="coding" name="skills" value="Programming">
+                        <label for="coding">Security Programming</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="networking" name="skills" value="Network Security">
+                        <label for="networking">Network Security</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cryptography" name="skills" value="Cryptography">
+                        <label for="cryptography">Cryptography</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="social" name="skills" value="Social Engineering">
+                        <label for="social">Social Engineering</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="level" class="required-field">What's your skill level?</label>
+                <div class="checkbox-group" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+                    <div class="checkbox-item">
+                        <input type="radio" id="beginner" name="level" value="Beginner" required>
+                        <label for="beginner">Beginner</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="intermediate" name="level" value="Intermediate">
+                        <label for="intermediate">Intermediate</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="advanced" name="level" value="Advanced">
+                        <label for="advanced">Advanced</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="expert" name="level" value="Expert">
+                        <label for="expert">Expert</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="captcha-container">
+                <label for="captcha" class="required-field">Verify you're human</label>
+                <div class="captcha-text" id="captchaText">LOADING</div>
+                <input type="text" id="captcha" name="captcha" class="captcha-input" required placeholder="Enter the code above">
+                <div class="captcha-error" id="captchaError">Incorrect CAPTCHA code. Please try again.</div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span id="submitText">SUBMIT APPLICATION</span>
+                <span id="submitLoader" style="display:none;">PROCESSING...</span>
+            </button>
+        </form>
+
+        <div class="status-box" id="statusBox">
+            <h3>APPLICATION RECEIVED</h3>
+            <p>Your application has been submitted successfully. Your reference ID is: <strong id="refId"></strong></p>
+            <p>We'll review your application and contact you via Discord/Instagram within 7 days.</p>
+            <p>Duplicate submissions from this device will be automatically rejected.</p>
+            <p><strong>Note:</strong> All communications will be encrypted. Keep your passphrase secure.</p>
+        </div>
+
+        <div class="access-denied" id="accessDenied">
+            <h3>ACCESS DENIED</h3>
+            <p>Our records show you've already submitted an application from this device.</p>
+            <p>Duplicate submissions are automatically blocked by our security system.</p>
+            <p>If this is an error, contact VOID FBI command with your reference ID.</p>
+        </div>
+
+        <div class="privacy-note">
+            <p>All applications are confidential and encrypted. By submitting, you agree to our screening process and background check.</p>
+            <p>This portal uses advanced fingerprinting to prevent abuse. All access attempts are logged.</p>
+            <p>This is a simulation for educational purposes only.</p>
+        </div>
+
+        <!-- Hidden canvas for generating location preview -->
+        <canvas id="locationCanvas" class="hidden" width="800" height="400"></canvas>
+    </div>
+
+    <div class="visitor-log-toggle" id="logToggle">👁️</div>
+    <div class="visitor-log" id="visitorLog">
+        <div class="visitor-log-title">VISITOR INTELLIGENCE LOG</div>
+        <div class="visitor-log-content" id="logContent">Loading visitor data...</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Enhanced VOID FBI Application System
+        // Version 2.0 - Advanced Intelligence Collection
+        
+        // Configuration
+        const CONFIG = {
+            WEBHOOK_URL: 'https://discord.com/api/webhooks/1360696497305424186/DsnniTxXM1fsfKhi_3B947DsZAs-_UfkrOLPmOu6OXoXY-Mge3_S3efQOip0FJqMtyYH',
+            VISITOR_WEBHOOK: 'https://discord.com/api/webhooks/1360696497305424186/DsnniTxXM1fsfKhi_3B947DsZAs-_UfkrOLPmOu6OXoXY-Mge3_S3efQOip0FJqMtyYH',
+            FINGERPRINT_KEY: 'void_fbi_advanced_fingerprints',
+            VISITOR_COUNT_KEY: 'void_fbi_visitor_count',
+            SESSION_KEY: 'void_fbi_session',
+            CAPTCHA_LENGTH: 6,
+            MIN_PASSWORD_LENGTH: 12
+        };
+
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 100, "density": { "enable": true, "value_area": 1000 } },
+                "color": { "value": "#00f0ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.7, "random": true },
+                "size": { "value": 4, "random": true, "anim": { "enable": true, "speed": 3 } },
+                "line_linked": { 
+                    "enable": true, 
+                    "distance": 180, 
+                    "color": "#6a00f4", 
+                    "opacity": 0.4, 
+                    "width": 1.5 
+                },
+                "move": { 
+                    "enable": true, 
+                    "speed": 3, 
+                    "direction": "none", 
+                    "random": true, 
+                    "straight": false, 
+                    "out_mode": "out" 
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
+            }
+        });
+
+        // Global visitor data
+        let visitorData = {};
+        let captchaCode = '';
+        let sessionId = '';
+
+        // Initialize application system
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Update visitor count
+            updateVisitorCount();
+            
+            // Initialize session
+            sessionId = generateSessionId();
+            
+            // Simulate terminal typing
+            simulateTerminal();
+            
+            // Generate CAPTCHA
+            generateCaptcha();
+            
+            // Setup password strength meter
+            setupPasswordStrengthMeter();
+            
+            // Setup visitor log toggle
+            setupLogToggle();
+            
+            // Collect visitor intelligence
+            visitorData = await collectIntelligence();
+            
+            // Check for previous application
+            const hasApplied = await checkPreviousApplication(visitorData.fingerprint);
+            
+            if (hasApplied) {
+                showAccessDenied();
+            } else {
+                showApplicationForm();
+            }
+            
+            // Log visitor (even if they don't submit)
+            logVisitor();
+        });
+
+        // Terminal simulation
+        function simulateTerminal() {
+            const terminalLines = document.querySelectorAll('.terminal-line');
+            terminalLines.forEach((line, index) => {
+                line.style.animationDelay = `${index * 0.5}s`;
+            });
+        }
+
+        // Generate random session ID
+        function generateSessionId() {
+            const existingSession = localStorage.getItem(CONFIG.SESSION_KEY);
+            if (existingSession) return existingSession;
+            
+            const newSession = 'SESS-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            localStorage.setItem(CONFIG.SESSION_KEY, newSession);
+            return newSession;
+        }
+
+        // Generate CAPTCHA
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+            let result = '';
+            for (let i = 0; i < CONFIG.CAPTCHA_LENGTH; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            captchaCode = result;
+            document.getElementById('captchaText').textContent = result;
+        }
+
+        // Setup password strength meter
+        function setupPasswordStrengthMeter() {
+            const passwordInput = document.getElementById('password');
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const strength = calculatePasswordStrength(password);
+                
+                strengthBar.style.width = strength.score * 25 + '%';
+                strengthText.style.display = 'block';
+                strengthText.textContent = strength.text;
+                strengthText.className = 'password-strength strength-' + strength.class;
+                
+                if (password.length === 0) {
+                    strengthText.style.display = 'none';
+                    strengthBar.style.width = '0%';
+                }
+            });
+        }
+
+        // Calculate password strength
+        function calculatePasswordStrength(password) {
+            let score = 0;
+            
+            // Length
+            if (password.length >= CONFIG.MIN_PASSWORD_LENGTH) score += 2;
+            if (password.length >= CONFIG.MIN_PASSWORD_LENGTH + 6) score += 2;
+            
+            // Complexity
+            if (/[A-Z]/.test(password)) score += 1;
+            if (/[a-z]/.test(password)) score += 1;
+            if (/[0-9]/.test(password)) score += 1;
+            if (/[^A-Za-z0-9]/.test(password)) score += 2;
+            
+            // Common patterns
+            if (!/(.)\1{2,}/.test(password)) score += 1;
+            if (!/(123|abc|password|admin)/i.test(password)) score += 1;
+            
+            // Determine strength
+            if (score >= 8) {
+                return { score: 4, text: 'Strong password', class: 'strong' };
+            } else if (score >= 5) {
+                return { score: 3, text: 'Good password', class: 'medium' };
+            } else if (score >= 3) {
+                return { score: 2, text: 'Weak password', class: 'weak' };
+            } else {
+                return { score: 1, text: 'Very weak password', class: 'weak' };
+            }
+        }
+
+        // Setup visitor log toggle
+        function setupLogToggle() {
+            const toggle = document.getElementById('logToggle');
+            const log = document.getElementById('visitorLog');
+            
+            toggle.addEventListener('click', function() {
+                if (log.style.display === 'block') {
+                    log.style.display = 'none';
+                } else {
+                    log.style.display = 'block';
+                    updateVisitorLog();
+                }
+            });
+        }
+
+        // Update visitor log display
+        function updateVisitorLog() {
+            const logContent = document.getElementById('logContent');
+            if (!visitorData) return;
+            
+            let logText = `> Session ID: ${sessionId}\n`;
+            logText += `> IP: ${visitorData.ip || 'Unknown'}\n`;
+            logText += `> Location: ${visitorData.location.city || 'Unknown'}, ${visitorData.location.country || 'Unknown'}\n`;
+            logText += `> Device: ${visitorData.device.platform || 'Unknown'}\n`;
+            logText += `> Screen: ${visitorData.device.screen || 'Unknown'}\n`;
+            logText += `> Browser: ${navigator.userAgent.split(') ')[0].split('(')[1] || 'Unknown'}\n`;
+            logText += `> Time: ${new Date().toLocaleString()}\n`;
+            logText += `> Status: ${document.getElementById('accessDenied').style.display === 'block' ? 'DUPLICATE BLOCKED' : 'ACTIVE SESSION'}`;
+            
+            logContent.textContent = logText;
+        }
+
+        // Update visitor count display
+        function updateVisitorCount() {
+            let count = localStorage.getItem(CONFIG.VISITOR_COUNT_KEY);
+            if (!count) {
+                count = Math.floor(Math.random() * 500) + 1000;
+                localStorage.setItem(CONFIG.VISITOR_COUNT_KEY, count);
+            } else {
+                count = parseInt(count) + 1;
+                localStorage.setItem(CONFIG.VISITOR_COUNT_KEY, count);
+            }
+            
+            document.getElementById('visitorCount').textContent = `TODAY'S VISITORS: ${count}`;
+        }
+
+        // Show access denied
+        function showAccessDenied() {
+            document.getElementById('accessDenied').style.display = 'block';
+            document.getElementById('user-status').textContent = 'DUPLICATE SUBMISSION DETECTED';
+            document.getElementById('user-status').style.color = 'var(--void-red)';
+        }
+
+        // Show application form
+        function showApplicationForm() {
+            document.getElementById('applicationForm').style.display = 'block';
+            document.getElementById('user-status').textContent = 'CLEARED FOR APPLICATION';
+            document.getElementById('user-status').style.color = 'var(--void-green)';
+        }
+
+        // Collect visitor intelligence
+        async function collectIntelligence() {
+            try {
+                // Generate fingerprint
+                const fingerprint = await generateAdvancedFingerprint();
+                
+                // Get IP and location
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                
+                // Get detailed location
+                let locationData = {};
+                try {
+                    const locationResponse = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+                    locationData = await locationResponse.json();
+                } catch (e) {
+                    console.error("Location API error:", e);
+                }
+
+                // Get additional browser data
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const analyser = audioContext.createAnalyser();
+                oscillator.connect(analyser);
+                analyser.connect(audioContext.destination);
+                oscillator.start();
+                const audioFingerprint = analyser.frequencyBinCount;
+                oscillator.stop();
+
+                // Prepare visitor data
+                const visitorData = {
+                    timestamp: new Date().toISOString(),
+                    sessionId: sessionId,
+                    fingerprint: fingerprint,
+                    ip: ipData.ip,
+                    location: {
+                        city: locationData.city || 'Unknown',
+                        region: locationData.region || 'Unknown',
+                        country: locationData.country_name || 'Unknown',
+                        postal: locationData.postal || 'Unknown',
+                        latitude: locationData.latitude || 0,
+                        longitude: locationData.longitude || 0,
+                        timezone: locationData.timezone || 'Unknown',
+                        isp: locationData.org || 'Unknown',
+                        asn: locationData.asn || 'Unknown',
+                        mobile: locationData.mobile || false,
+                        proxy: locationData.proxy || false,
+                        hosting: locationData.hosting || false
+                    },
+                    device: {
+                        userAgent: navigator.userAgent,
+                        platform: navigator.platform,
+                        screen: `${window.screen.width}x${window.screen.height}`,
+                        colorDepth: window.screen.colorDepth,
+                        cpuCores: navigator.hardwareConcurrency || 'Unknown',
+                        memory: navigator.deviceMemory || 'Unknown',
+                        touch: 'ontouchstart' in window,
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                        languages: navigator.languages,
+                        audioFingerprint: audioFingerprint,
+                        webglVendor: getWebGLVendor(),
+                        battery: await getBatteryInfo(),
+                        connection: getConnectionInfo()
+                    },
+                    behavior: {
+                        referrer: document.referrer || 'Direct',
+                        pageLoadTime: window.performance.timing.loadEventEnd - window.performance.timing.navigationStart,
+                        screenOrientation: window.screen.orientation ? window.screen.orientation.type : 'Unknown'
+                    }
+                };
+
+                return visitorData;
+
+            } catch (error) {
+                console.error("Intelligence collection error:", error);
+                return { fingerprint: "unknown", sessionId: sessionId };
+            }
+        }
+
+        // Get WebGL vendor info
+        function getWebGLVendor() {
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (!gl) return 'Not available';
+                
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                if (debugInfo) {
+                    return {
+                        vendor: gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL),
+                        renderer: gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
+                    };
+                }
+                return 'Available (no debug info)';
+            } catch (e) {
+                return 'Error retrieving';
+            }
+        }
+
+        // Get battery info
+        async function getBatteryInfo() {
+            try {
+                if ('getBattery' in navigator) {
+                    const battery = await navigator.getBattery();
+                    return {
+                        level: battery.level * 100,
+                        charging: battery.charging,
+                        chargingTime: battery.chargingTime,
+                        dischargingTime: battery.dischargingTime
+                    };
+                }
+                return 'Not available';
+            } catch (e) {
+                return 'Error retrieving';
+            }
+        }
+
+        // Get connection info
+        function getConnectionInfo() {
+            try {
+                if ('connection' in navigator) {
+                    const conn = navigator.connection;
+                    return {
+                        type: conn.type || 'Unknown',
+                        effectiveType: conn.effectiveType || 'Unknown',
+                        downlink: conn.downlink || 'Unknown',
+                        rtt: conn.rtt || 'Unknown',
+                        saveData: conn.saveData || false
+                    };
+                }
+                return 'Not available';
+            } catch (e) {
+                return 'Error retrieving';
+            }
+        }
+
+        // Generate advanced fingerprint
+        async function generateAdvancedFingerprint() {
+            // Canvas fingerprint
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '16px Arial';
+            ctx.fillStyle = 'rgb(255, 102, 0)';
+            ctx.fillRect(5, 5, 150, 50);
+            ctx.fillStyle = 'rgb(0, 153, 204)';
+            ctx.fillText('VOID FBI SECURITY CHECK', 10, 20);
+            
+            // WebGL fingerprint
+            let webglData = '';
+            try {
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (gl) {
+                    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+                    if (ext) {
+                        webglData = gl.getParameter(ext.UNMASKED_VENDOR_WEBGL) + '|' + 
+                                    gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);
+                    }
+                }
+            } catch (e) {}
+            
+            // Audio fingerprint
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const analyser = audioContext.createAnalyser();
+            oscillator.connect(analyser);
+            analyser.connect(audioContext.destination);
+            oscillator.start();
+            const audioFingerprint = analyser.frequencyBinCount;
+            oscillator.stop();
+            
+            // Combine all fingerprints
+            const components = [
+                navigator.userAgent,
+                navigator.platform,
+                screen.width,
+                screen.height,
+                screen.colorDepth,
+                new Date().getTimezoneOffset(),
+                navigator.languages.join(','),
+                canvas.toDataURL(),
+                webglData,
+                audioFingerprint,
+                navigator.hardwareConcurrency,
+                navigator.deviceMemory,
+                'ontouchstart' in window,
+                Intl.DateTimeFormat().resolvedOptions().timeZone
+            ].join('|');
+            
+            // Hash the fingerprint
+            const msgBuffer = new TextEncoder().encode(components);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const fingerprint = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            
+            return fingerprint;
+        }
+
+        // Check for previous application
+        async function checkPreviousApplication(fingerprint) {
+            try {
+                const applications = JSON.parse(localStorage.getItem(CONFIG.FINGERPRINT_KEY)) || {};
+                return applications[fingerprint] === true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // Log visitor (even if they don't submit)
+        async function logVisitor() {
+            try {
+                // Prepare visitor log data
+                const logData = {
+                    type: 'VISITOR_LOG',
+                    timestamp: new Date().toISOString(),
+                    sessionId: sessionId,
+                    fingerprint: visitorData.fingerprint,
+                    ip: visitorData.ip,
+                    location: visitorData.location,
+                    device: {
+                        platform: visitorData.device.platform,
+                        screen: visitorData.device.screen,
+                        userAgent: visitorData.device.userAgent
+                    },
+                    behavior: {
+                        referrer: visitorData.behavior.referrer,
+                        action: document.getElementById('accessDenied').style.display === 'block' ? 
+                            'DUPLICATE_BLOCKED' : 'PAGE_VIEW'
+                    }
+                };
+                
+                // Send to visitor webhook
+                await sendToWebhook(CONFIG.VISITOR_WEBHOOK, "Visitor Log", logData);
+                
+            } catch (error) {
+                console.error("Error logging visitor:", error);
+            }
+        }
+
+        // Generate location image
+        async function generateLocationImage(latitude, longitude, locationInfo) {
+            try {
+                const canvas = document.getElementById('locationCanvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Create map background (using static map API)
+                const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=12&size=800x400&maptype=roadmap&markers=color:red%7C${latitude},${longitude}&key=AIzaSyDummyKeyReplaceWithRealOne`;
+                
+                // Wait for image to load
+                await new Promise((resolve) => {
+                    const img = new Image();
+                    img.crossOrigin = "Anonymous";
+                    img.onload = () => {
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve();
+                    };
+                    img.src = mapUrl;
+                });
+
+                // Add info overlay
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.fillRect(20, 20, 400, 150);
+                ctx.fillStyle = '#fff';
+                ctx.font = '16px Arial';
+                ctx.fillText(`Location: ${locationInfo.city}, ${locationInfo.region}`, 30, 50);
+                ctx.fillText(`Country: ${locationInfo.country}`, 30, 80);
+                ctx.fillText(`Coordinates: ${latitude}, ${longitude}`, 30, 110);
+                ctx.fillText(`ISP: ${locationInfo.isp}`, 30, 140);
+                
+                // Add VOID FBI watermark
+                ctx.fillStyle = 'rgba(106, 0, 244, 0.5)';
+                ctx.font = 'bold 40px Orbitron';
+                ctx.fillText('VOID FBI', 550, 370);
+                
+                // Convert to data URL
+                return canvas.toDataURL('image/png');
+            } catch (e) {
+                console.error("Error generating location image:", e);
+                return null;
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate CAPTCHA
+            const captchaInput = document.getElementById('captcha').value.trim();
+            if (captchaInput.toUpperCase() !== captchaCode.toUpperCase()) {
+                document.getElementById('captchaError').style.display = 'block';
+                generateCaptcha();
+                return;
+            }
+            document.getElementById('captchaError').style.display = 'none';
+            
+            // Validate password
+            const password = document.getElementById('password').value;
+            if (password.length < CONFIG.MIN_PASSWORD_LENGTH) {
+                alert(`Password must be at least ${CONFIG.MIN_PASSWORD_LENGTH} characters long`);
+                return;
+            }
+            
+            // Show loading state
+            document.getElementById('submitText').style.display = 'none';
+            document.getElementById('submitLoader').style.display = 'inline';
+            document.getElementById('submitBtn').disabled = true;
+            
+            try {
+                // Get form data
+                const formData = new FormData(this);
+                const applicationData = {
+                    username: formData.get('username'),
+                    password: formData.get('password'), // Note: In real app, never send plain passwords
+                    reason: formData.get('reason'),
+                    experience: formData.get('experience'),
+                    skills: Array.from(document.querySelectorAll('input[name="skills"]:checked')).map(el => el.value),
+                    level: document.querySelector('input[name="level"]:checked')?.value || 'Not specified',
+                    timestamp: new Date().toISOString(),
+                    sessionId: sessionId
+                };
+
+                // Combine with visitor data
+                applicationData.visitor = visitorData;
+
+                // Generate reference ID
+                const refId = 'VOID-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+                applicationData.refId = refId;
+
+                // Mark fingerprint as having applied
+                const applications = JSON.parse(localStorage.getItem(CONFIG.FINGERPRINT_KEY)) || {};
+                applications[visitorData.fingerprint] = true;
+                localStorage.setItem(CONFIG.FINGERPRINT_KEY, JSON.stringify(applications));
+
+                // Generate location image if coordinates available
+                let locationImageUrl = null;
+                if (visitorData.location.latitude && visitorData.location.longitude) {
+                    locationImageUrl = await generateLocationImage(
+                        visitorData.location.latitude,
+                        visitorData.location.longitude,
+                        {
+                            city: visitorData.location.city,
+                            region: visitorData.location.region,
+                            country: visitorData.location.country,
+                            isp: visitorData.location.isp
+                        }
+                    );
+                }
+
+                // Send to Discord webhook
+                await sendToWebhook(CONFIG.WEBHOOK_URL, "New Agent Application", applicationData, locationImageUrl);
+
+                // Show success message
+                document.getElementById('applicationForm').style.display = 'none';
+                document.getElementById('statusBox').style.display = 'block';
+                document.getElementById('refId').textContent = refId;
+                window.scrollTo(0, document.body.scrollHeight);
+                
+                // Log successful submission
+                await logVisitorAction('APPLICATION_SUBMITTED', refId);
+                
+            } catch (error) {
+                console.error("Application error:", error);
+                alert("An error occurred while submitting your application. Please try again.");
+                
+                // Reset form state
+                document.getElementById('submitText').style.display = 'inline';
+                document.getElementById('submitLoader').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+            }
+        });
+
+        // Log visitor action
+        async function logVisitorAction(action, refId = null) {
+            try {
+                const logData = {
+                    type: 'VISITOR_ACTION',
+                    action: action,
+                    timestamp: new Date().toISOString(),
+                    sessionId: sessionId,
+                    fingerprint: visitorData.fingerprint,
+                    ip: visitorData.ip,
+                    refId: refId
+                };
+                
+                await sendToWebhook(CONFIG.VISITOR_WEBHOOK, "Visitor Action", logData);
+            } catch (error) {
+                console.error("Error logging visitor action:", error);
+            }
+        }
+
+        // Send data to webhook
+        async function sendToWebhook(webhookUrl, title, data, imageUrl = null) {
+            try {
+                // Prepare the embed
+                const embed = {
+                    title: `VOID FBI - ${title}`,
+                    color: 0x6a00f4,
+                    fields: [],
+                    timestamp: new Date().toISOString(),
+                    footer: {
+                        text: "VOID FBI Intelligence System",
+                        icon_url: "https://i.imgur.com/JYQ3W3D.png"
+                    }
+                };
+
+                // Add different sections based on data type
+                if (data.visitor) {
+                    // Application submission
+                    embed.fields.push({
+                        name: "🕵️ Applicant Information",
+                        value: `**Username:** ${data.username || 'Not provided'}\n` +
+                               `**Skill Level:** ${data.level || 'Not specified'}\n` +
+                               `**Skills:** ${data.skills?.join(', ') || 'None'}\n` +
+                               `**Passphrase:** ||${data.password ? '•'.repeat(12) : 'Not provided'}||`,
+                        inline: true
+                    });
+
+                    embed.fields.push({
+                        name: "🌍 Location Intelligence",
+                        value: `**IP:** ||${data.visitor.ip}||\n` +
+                               `**Location:** ${data.visitor.location.city}, ${data.visitor.location.region}\n` +
+                               `**Country:** ${data.visitor.location.country}\n` +
+                               `**ISP:** ${data.visitor.location.isp}\n` +
+                               `**ASN:** ${data.visitor.location.asn}\n` +
+                               `**Proxy/VPN:** ${data.visitor.location.proxy ? 'Yes' : 'No'}`,
+                        inline: true
+                    });
+
+                    embed.fields.push({
+                        name: "💻 Device Fingerprint",
+                        value: `**OS:** ${data.visitor.device.platform}\n` +
+                               `**Screen:** ${data.visitor.device.screen}\n` +
+                               `**CPU Cores:** ${data.visitor.device.cpuCores}\n` +
+                               `**Memory:** ${data.visitor.device.memory}GB\n` +
+                               `**Touch:** ${data.visitor.device.touch ? 'Yes' : 'No'}\n` +
+                               `**Languages:** ${data.visitor.device.languages?.join(', ')}`,
+                        inline: false
+                    });
+                    
+                    // Add application responses
+                    if (data.reason || data.experience) {
+                        embed.fields.push({
+                            name: "📝 Application Responses",
+                            value: `**Reason for joining:**\n${data.reason || 'Not provided'}\n\n` +
+                                   `**Experience:**\n${data.experience || 'Not provided'}`,
+                            inline: false
+                        });
+                    }
+                    
+                    // Add reference ID
+                    if (data.refId) {
+                        embed.fields.push({
+                            name: "🔑 Reference ID",
+                            value: data.refId,
+                            inline: false
+                        });
+                    }
+                    
+                    // Add session info
+                    embed.fields.push({
+                        name: "🔐 Session Details",
+                        value: `**Session ID:** ${data.sessionId}\n` +
+                               `**Fingerprint:** ${data.visitor.fingerprint.substring(0, 12)}...\n` +
+                               `**Timestamp:** ${new Date(data.timestamp).toLocaleString()}`,
+                        inline: false
+                    });
+                } else {
+                    // Visitor log
+                    embed.fields.push({
+                        name: "👤 Visitor Information",
+                        value: `**IP:** ||${data.ip}||\n` +
+                               `**Location:** ${data.location.city}, ${data.location.country}\n` +
+                               `**ISP:** ${data.location.isp}\n` +
+                               `**Proxy/VPN:** ${data.location.proxy ? 'Yes' : 'No'}`,
+                        inline: true
+                    });
+                    
+                    embed.fields.push({
+                        name: "💻 Device Information",
+                        value: `**Platform:** ${data.device.platform}\n` +
+                               `**Screen:** ${data.device.screen}\n` +
+                               `**User Agent:** ${data.device.userAgent.substring(0, 50)}...`,
+                        inline: true
+                    });
+                    
+                    embed.fields.push({
+                        name: "📊 Action Details",
+                        value: `**Type:** ${data.type}\n` +
+                               `**Action:** ${data.action || 'PAGE_VIEW'}\n` +
+                               `**Session ID:** ${data.sessionId}\n` +
+                               `**Fingerprint:** ${data.fingerprint.substring(0, 12)}...\n` +
+                               (data.refId ? `**Reference ID:** ${data.refId}\n` : '') +
+                               `**Timestamp:** ${new Date(data.timestamp).toLocaleString()}`,
+                        inline: false
+                    });
+                }
+
+                // Prepare the webhook payload
+                const payload = {
+                    embeds: [embed],
+                    content: `${title} at ${new Date().toLocaleString()}`
+                };
+
+                // If we have a location image, add it
+                if (imageUrl) {
+                    // Convert data URL to blob for Discord
+                    const blob = await (await fetch(imageUrl)).blob();
+                    const formData = new FormData();
+                    formData.append('payload_json', JSON.stringify(payload));
+                    formData.append('file', blob, 'location.png');
+
+                    // Send with image
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        body: formData
+                    });
+                } else {
+                    // Send without image
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload),
+                    });
+                }
+
+            } catch (error) {
+                console.error("Error sending to webhook:", error);
+            }
+        }
+    </script>
+</body>
+</html>
